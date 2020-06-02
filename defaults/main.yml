@@ -1,0 +1,59 @@
+# defaults file for fail2ban
+---
+fail2ban_loglevel: INFO
+fail2ban_logtarget: "/var/log/fail2ban.log"
+fail2ban_syslog_target: "/var/log/fail2ban.log"
+fail2ban_syslog_facility: 1
+fail2ban_socket: /run/fail2ban/fail2ban.sock
+fail2ban_pidfile: /run/fail2ban/fail2ban.pid
+
+## ban 96h (24*4*3200)
+## ban 48h (24*2*3200)
+## ban 24h (24*3200)
+#findtime  = 3200
+#bantime   = 1200
+#maxretry  = 3
+
+fail2ban_sendername: 'Fail2ban'
+fail2ban_ignoreips:
+ - 127.0.0.1/8
+fail2ban_bantime: 600
+fail2ban_maxretry: 3
+fail2ban_findtime: 3200
+fail2ban_backend: auto
+fail2ban_usedns: warn
+
+fail2ban_destemail: root@localhost
+fail2ban_banaction: iptables-multiport
+fail2ban_mta: sendmail
+fail2ban_protocol: tcp
+fail2ban_chain: INPUT
+fail2ban_action: action_
+
+fail2ban_logencoding: 'utf-8'
+
+fail2ban_auth_log: "/var/log/authlog.log"
+
+fail2ban_services: {}
+#   - name: "ssh"
+#     enabled: "true"
+#     port: "ssh"
+#     filter: "sshd"
+#     logpath: "/var/log/authlog.log"
+#     findtime: 12h
+#     bantime: 2w
+#     maxretry: 2
+#   - name: "ssh-breakin"
+#     enabled: "true"
+#     port: "ssh"
+#     filter: sshd-break-in
+#     logpath: "/var/log/authlog.log"
+#     maxretry: 2
+#   - name: "ssh-ddos"
+#     enabled: "true"
+#     port: "ssh"
+#     filter: sshd-ddos
+#     logpath: "/var/log/authlog.log"
+#     maxretry: 2
+
+fail2ban_custom_services: {}

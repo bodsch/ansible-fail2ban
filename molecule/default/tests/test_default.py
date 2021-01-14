@@ -34,4 +34,3 @@ def test_files(host, files):
     f = host.file(files)
     assert f.exists
     assert f.is_file
-

@@ -1,24 +1,15 @@
 # This file is managed by Ansible, all changes will be lost
 
-
-{% for service in fail2ban_services %}
+{% for service in fail2ban_jails  %}
 [{{ service.name }}]
 enabled = {{ service.enabled | default(true) | bool | to_json }}
 {% for option, value in service.items() %}
 {% if option not in ['name', 'enabled'] %}
+{% if value is iterable and (value is not string and value is not mapping) %}
+{{ option }} = {{ value | join(' ') }}
+{% elif value is string or value is number %}
 {{ option }} = {{ value }}
 {% endif %}
-{% endfor %}
-
-{% endfor %}
-
-
-{% for service in fail2ban_custom_services %}
-[{{ service.name }}]
-enabled = {{ service.enabled | default(true) | bool | to_json }}
-{% for option, value in service.items() %}
-{% if option not in ['name', 'enabled'] %}
-{{ option }} = {{ value }}
 {% endif %}
 {% endfor %}
 

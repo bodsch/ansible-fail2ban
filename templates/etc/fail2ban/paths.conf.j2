@@ -1,0 +1,13 @@
+# {{ ansible_managed }}
+
+{% for value, key in item.value.items() -%}
+[{{ value | upper }}]
+{% for k, v  in key.items() %}
+{%- if v is string %}
+{{ k }} = {{ v }}
+{% elif v is iterable and (v is not string and v is not mapping) %}
+{{ k }} = {{ v | join(' ') }}
+{% endif %}
+{% endfor %}
+
+{% endfor %}

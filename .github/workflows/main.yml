@@ -43,10 +43,10 @@ jobs:
       matrix:
         distro:
           - debian10
-          - ubuntu2004
-          - ubuntu2010
-          - centos8
-          - centos7
+#          - ubuntu2004
+#          - ubuntu2010
+#          - centos8
+#          - centos7
 
     steps:
       - name: Check out the codebase.
@@ -60,7 +60,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule[docker] docker
+        run: pip3 install -r test-requirements.txt
 
       - name: Run Molecule tests.
         run: molecule test

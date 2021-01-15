@@ -1,7 +1,7 @@
 
 # Ansible Role: fail2ban
 
-![CI](https://github.com/bodsch/ansible-fail2ban/workflows/CI/badge.svg)
+[![CI](https://github.com/bodsch/ansible-fail2ban/workflows/CI/badge.svg?event=push)](https://github.com/bodsch/ansible-fail2ban/actions?query=workflow%3ACI)
 
 An Ansible Role that installs and configure fail2ban 2.x on Debian/Ubuntu, RHEL/CentOS, ArchLinux and ArtixLinux (mabybe also on Gentoo based Systemes).
 

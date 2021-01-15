@@ -36,6 +36,12 @@ jobs:
           # - 2.10
     steps:
 
+      - name: check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+          # path: 'ansible-fail2ban'
+
       - name: set up python.
         uses: actions/setup-python@v2
         with:
@@ -45,12 +51,6 @@ jobs:
       - name: install test dependencies.
         run: pip install -r test-requirements.txt
         # install yamllint ansible-lint
-
-      - name: check out the codebase.
-        uses: actions/checkout@v2
-        with:
-          path: "${{ github.repository }}"
-          # path: 'ansible-fail2ban'
 
       - name: Lint code.
         run: |

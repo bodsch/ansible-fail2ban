@@ -17,36 +17,36 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        distro:
-          - debian10
-          # - ubuntu2004
-          # # - ubuntu2010
-          # - centos8
-          # - centos7
-        python-version:
-          - 3.7
-          # - 3.8
-          # - 3.9
-        ansible-version:
-          - 2.8
-          # - 2.9
-          # - 2.10
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
+    #     distro:
+    #       - debian10
+    #       # - ubuntu2004
+    #       # # - ubuntu2010
+    #       # - centos8
+    #       # - centos7
+    #     python-version:
+    #       - 3.7
+    #       # - 3.8
+    #       # - 3.9
+    #     ansible-version:
+    #       - 2.8
+    #       # - 2.9
+    #       # - 2.10
     steps:
 
       - name: check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: "${{ github.repository }}"
-          # path: 'ansible-fail2ban'
+          # path: "${{ github.repository }}"
+          path: 'ansible-fail2ban'
 
       - name: set up python.
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
-          # python-version: '3.x'
+          # python-version: ${{ matrix.python-version }}
+          python-version: '3.x'
 
       - name: install test dependencies.
         run: pip install -r test-requirements.txt

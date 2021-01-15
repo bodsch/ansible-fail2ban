@@ -11,3 +11,10 @@
 - name: merge fail2ban_jail configuration between defaults and custom
   set_fact:
     fail2ban_jail: "{{ fail2ban_jail_default | combine( fail2ban_jail, recursive=True ) }}"
+
+- name: update apt cache
+  apt:
+    update_cache: true
+    cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+  when:
+    - ansible_os_family | lower == 'debian'

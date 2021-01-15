@@ -96,6 +96,9 @@
   template:
     src: etc/fail2ban/paths.conf.j2
     dest: /etc/fail2ban/paths-{{ item.key }}.conf
+    owner: root
+    group: root
+    mode: 0644
   loop:
     "{{ fail2ban_path_definitions | dict2items }}"
   when:

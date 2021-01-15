@@ -4,9 +4,6 @@ __metaclass__ = type
 
 from ansible.utils.display import Display
 
-import json
-import crypt
-
 # https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html
 # https://blog.oddbit.com/post/2019-04-25-writing-ansible-filter-plugins/
 
@@ -40,13 +37,12 @@ class FilterModule(object):
     def __sort_list(self, _list, _filter):
         return sorted(_list, key=lambda k: k.get(_filter))
 
-
     def merge_jails(self, defaults, data):
         """
 
         """
         count_defaults = len(defaults)
-        count_data     = len(data)
+        count_data = len(data)
 
         # display.v("defaults: ({type}) {len} - {data} entries".format(data=defaults, type=type(defaults), len=count_defaults))
         # display.vv(json.dumps(data, indent=2, sort_keys=False))

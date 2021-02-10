@@ -13,7 +13,6 @@ _fail2ban_before_conf:
   archlinux: paths-arch.conf
   artixlinux: paths-artix.conf
 
-
 fail2ban_packages: "{{
           _fail2ban_packages[ansible_os_family | lower~ '-' ~ ansible_distribution_major_version] |
   default(_fail2ban_packages[ansible_os_family | lower] |
@@ -48,7 +47,6 @@ fail2ban_conf_default:
   definition: {}
   thread:
     stacksize: 0
-
 
 fail2ban_jail_default:
   includes:

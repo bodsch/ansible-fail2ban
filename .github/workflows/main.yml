@@ -35,11 +35,9 @@ jobs:
           sudo apt-get install -y ansible ansible-lint yamllint flake8
 
       - name: YAMLlint
-        run: |
-          yamllint .
+        run: yamllint .
       - name: ansible-lint
-        run: |
-          ansible-lint .
+        run: ansible-lint .
       - name: flake8
         run: flake8 .
 

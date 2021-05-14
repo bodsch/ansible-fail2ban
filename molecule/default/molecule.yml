@@ -23,9 +23,6 @@ platforms:
 
 provisioner:
   name: ansible
-  ansible_args:
-    - --diff
-    # - -vvv
   config_options:
     defaults:
       deprecation_warnings: True

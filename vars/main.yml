@@ -41,7 +41,7 @@ fail2ban_conf_default:
     # Set the file for the fail2ban persistent data to be stored.
     dbfile: /var/lib/fail2ban/fail2ban.sqlite3
     # Sets age at which bans should be purged from the database
-    dbpurgeage: 1d
+    dbpurgeage: 86400
     # Number of matches stored in database per ticket
     dbmaxmatches: 10
   definition: {}

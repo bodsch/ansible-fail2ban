@@ -1,16 +1,29 @@
 ---
 
-- name: merge fail2ban_jails configuration between defaults and custom
+- name: merge jails configuration between defaults and custom
   set_fact:
-    fail2ban_jails: "{{ fail2ban_jails_defaults | merge_jails( fail2ban_jails ) }}"
+    fail2ban_jails: "{{ fail2ban_jails_defaults |
+      merge_jails( fail2ban_jails ) }}"
 
-- name: merge fail2ban_conf configuration between defaults and custom
+- name: merge filters configuration between defaults and custom
   set_fact:
-    fail2ban_conf: "{{ fail2ban_conf_default | combine( fail2ban_conf, recursive=True ) }}"
+    fail2ban_filters: "{{ fail2ban_filters_defaults |
+      merge_jails( fail2ban_filters ) }}"
 
-- name: merge fail2ban_jail configuration between defaults and custom
+- name: merge actions configuration between defaults and custom
   set_fact:
-    fail2ban_jail: "{{ fail2ban_jail_default | combine( fail2ban_jail, recursive=True ) }}"
+    fail2ban_actions: "{{ fail2ban_actions_defaults |
+      merge_jails( fail2ban_actions ) }}"
+
+- name: merge fail2ban conf configuration between defaults and custom
+  set_fact:
+    fail2ban_conf: "{{ fail2ban_conf_default |
+      combine( fail2ban_conf, recursive=True ) }}"
+
+- name: merge fail2ban jail configuration between defaults and custom
+  set_fact:
+    fail2ban_jail: "{{ fail2ban_jail_default |
+      combine( fail2ban_jail, recursive=True ) }}"
 
 - name: update apt cache
   apt:

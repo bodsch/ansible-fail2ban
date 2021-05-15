@@ -1,0 +1,56 @@
+# {{ ansible_managed }}
+
+# {{ item.keys() }}
+
+{% if item.author is defined %}
+# Author: {{ item.author }}
+{% endif %}
+
+{% if item.description is defined %}
+{% for line in item.description.split('\n') %}
+# {{ line }}
+{% endfor %}
+{% endif %}
+
+{% if item.includes is defined %}
+[INCLUDES]
+{% for k, v in item.includes.items() %}
+{% if v | type == 'list' %}
+{{ "%-15s" | format(k,) }} = {{ v | join('\n                  ') }}
+{% else %}
+{{ "%-15s" | format(k,) }} = {{ v }}
+{% endif %}
+
+{% endfor %}
+
+{% endif %}
+
+{% if item.definition is defined %}
+[Definition]
+{% for k, v in item.definition.items() %}
+{% if v | type == 'list' %}
+{{ "%-15s" | format(k,) }} = {{ v | join('\n                  ') }}
+{% else %}
+{{ "%-15s" | format(k,) }} = {{ v }}
+{% endif %}
+
+{% endfor %}
+
+{% endif %}
+
+
+{% if item.init is defined %}
+[Init]
+{% for k, v in item.init.items() %}
+{{ "%-15s" | format(k,) }} = {{ v }}
+{% endfor %}
+
+{% endif %}
+
+{% if item.init_ipv6 is defined %}
+[Init?family=inet6]
+{% for k, v in item.init_ipv6.items() %}
+{{ "%-15s" | format(k,) }} = {{ v }}
+{% endfor %}
+
+{% endif %}

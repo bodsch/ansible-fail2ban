@@ -119,52 +119,6 @@ fail2ban_jails_defaults:
     filter: sshd-ddos
     logpath: '%(auth_log)s'
 
-#   - name: dropbear
-#     enabled: false
-#     port: ssh
-#     logpath: '%(dropbear_log)s'
-#     backend: '%(dropbear_backend)s'
-#   - name: selinux-ssh
-#     enabled: false
-#     port: ssh
-#     logpath: '%(auditd_log)s'
-#   - name: apache-auth
-#     port: http,https
-#     logpath: '%(apache_error_log)s'
-#   # Ban hosts which agent identifies spammer robots crawling the web
-#   # for email addresses. The mail outputs are buffered.
-#   - name: apache-badbots
-#     port: http,https
-#     logpath: '%(apache_access_log)s'
-#     bantime: 48h
-#     maxretry: 1
-#
-#   - name: nginx-http-auth
-#     port: http,https
-#     logpath: '%(nginx_error_log)s'
-#
-#   # To use 'nginx-limit-req' jail you should have `ngx_http_limit_req_module`
-#   # and define `limit_req` and `limit_req_zone` as described in nginx documentation
-#   # http://nginx.org/en/docs/http/ngx_http_limit_req_module.html
-#   # or for example see in 'config/filter.d/nginx-limit-req.conf'
-#   - name: nginx-limit-req
-#     port: http,https
-#     logpath: '%(nginx_error_log)s'
-#
-#   - name: nginx-botsearch
-#     port: http,https
-#     logpath: '%(nginx_error_log)s'
-#     maxretry: 2
-#
-#   - name: dovecot
-#     port: pop3,pop3s,imap,imaps,submission,465,sieve
-#     logpath: '%(dovecot_log)s'
-#     backend: '%(dovecot_backend)s'
-#
-#   # AKA mumble-server
-#   - name: murmur
-#     port: 64738
-#     action_:
-#       - '%(default/action_)s[name=%(__name__)s-tcp, protocol="tcp"]'
-#       - '%(default/action_)s[name=%(__name__)s-udp, protocol="udp"]'
-#     logpath: /var/log/mumble-server/mumble-server.log
+fail2ban_actions_defaults: []
+
+fail2ban_filters_defaults: []

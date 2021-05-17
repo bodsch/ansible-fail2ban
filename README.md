@@ -44,11 +44,35 @@ fail2ban_ignoreips:
 
 fail2ban_conf:
   default:
-    dbpurgeage: 5d
+    loglevel: INFO
+    logtarget: "/var/log/fail2ban.log"
+    syslogsocket: auto
+    socket: /run/fail2ban/fail2ban.sock
+    pidfile: /run/fail2ban/fail2ban.pid
+    dbfile: /var/lib/fail2ban/fail2ban.sqlite3
+    dbpurgeage: 1d
+    dbmaxmatches: 10
+  definition: {}
+  thread:
+    stacksize: 0
 
 fail2ban_jail:
   default:
-    bantime: 3200
+    ignoreips: "{{ fail2ban_ignoreips }}"
+    bantime: 600
+    maxretry: 3
+    findtime: 3200
+    backend: auto
+    usedns: warn
+    logencoding: auto
+    jails_enabled: false
+  actions:
+    destemail: root@localhost
+    sender: root@localhost
+    mta: sendmail
+    protocol: tcp
+    chain: INPUT
+    banaction: iptables-multiport
 
 fail2ban_jails:
   - name: ssh
@@ -56,8 +80,8 @@ fail2ban_jails:
     port: ssh
     filter: sshd
     logpath: /var/log/authlog.log
-    findtime: 12h
-    bantime: 2w
+    findtime: 3200
+    bantime: 86400
     maxretry: 2
   - name: ssh-breakin
     enabled: true

@@ -54,8 +54,8 @@ fail2ban_conf:
     dbmaxmatches: 10
   definition: {}
   thread:
-    stacksize: 0    
-    
+    stacksize: 0
+
 fail2ban_jail:
   default:
     ignoreips: "{{ fail2ban_ignoreips }}"
@@ -80,8 +80,8 @@ fail2ban_jails:
     port: ssh
     filter: sshd
     logpath: /var/log/authlog.log
-    findtime: 12h
-    bantime: 2w
+    findtime: 3200
+    bantime: 86400
     maxretry: 2
   - name: ssh-breakin
     enabled: true

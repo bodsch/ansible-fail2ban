@@ -81,7 +81,6 @@ fail2ban_actions:
       blocktype: 'REJECT --reject-with icmp6-port-unreachable'
       iptables: 'ip6tables <lockingopt>'
 
-
   - name: iptables
     includes:
       before: iptables-common.conf
@@ -101,6 +100,33 @@ fail2ban_actions:
       actionunban:
         - '<iptables> -D f2b-<name> -s <ip> -j <blocktype>'
 
+  - name: ufw
+    author: Guilhem Lettron
+    description: |
+      Fail2Ban action configuration file for ufw
+
+      You are required to run "ufw enable" before this will have any effect.
+
+      The insert position should be appropriate to block the required traffic.
+      A number after an allow rule to the application won't be of much use.
+
+      Enhancements: Daniel Black
+
+    definition:
+      actionstart:
+      actionstop:
+      actioncheck:
+      actionban:
+        - '[ -n "<application>" ] && app="app <application>"'
+        - 'ufw insert <insertpos> <blocktype> from <ip> to <destination> $app'
+      actionunban:
+        - '[ -n "<application>" ] && app="app <application>"'
+        - 'ufw delete <blocktype> from <ip> to <destination> $app'
+    init:
+      insertpos: 1
+      blocktype: reject
+      destination: any
+      application: ''
 
 fail2ban_jails:
   - name: ssh

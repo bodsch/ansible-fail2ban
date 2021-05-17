@@ -1,7 +1,5 @@
 # {{ ansible_managed }}
 
-# {{ item.keys() }}
-
 {% if item.author is defined %}
 # Author: {{ item.author }}
 {% endif %}
@@ -13,16 +11,18 @@
 {% endif %}
 
 {% if item.includes is defined %}
+{% set _attr = ['before', 'after'] %}
 [INCLUDES]
 {% for k, v in item.includes.items() %}
+{% if k in _attr %}
 {% if v | type == 'list' %}
 {{ "%-15s" | format(k,) }} = {{ v | join('\n                  ') }}
 {% else %}
 {{ "%-15s" | format(k,) }} = {{ v }}
 {% endif %}
+{% endif %}
 
 {% endfor %}
-
 {% endif %}
 
 {% if item.definition is defined %}
@@ -35,9 +35,7 @@
 {% endif %}
 
 {% endfor %}
-
 {% endif %}
-
 
 {% if item.init is defined %}
 [Init]

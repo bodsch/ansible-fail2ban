@@ -11,10 +11,18 @@
 {% endif %}
 
 {% if item.includes is defined %}
+{% set _attr = ['before', 'after'] %}
 [INCLUDES]
-{% if item.includes.before is defined %}
-before       = {{ item.includes.before }}
+{% for k, v in item.includes.items() %}
+{% if k in _attr %}
+{% if v | type == 'list' %}
+{{ "%-15s" | format(k,) }} = {{ v | join('\n                  ') }}
+{% else %}
+{{ "%-15s" | format(k,) }} = {{ v }}
 {% endif %}
+{% endif %}
+
+{% endfor %}
 {% endif %}
 
 {% if item.default is defined %}
@@ -24,48 +32,34 @@ _daemon      = {{ item.default.daemon }}
 {% endif %}
 {% endif -%}
 
+
+{% if item.definition is defined %}
 [Definition]
 {% if item.definition.daemon is defined %}
-_daemon      = {{ item.definition.daemon }}
+_daemon        = {{ item.definition.daemon }}
+{% set _ = item.definition.pop('daemon') %}
 {% endif -%}
 
 {% if item.definition.port is defined %}
-_port        = {{ item.definition.port }}
+_port          = {{ item.definition.port }}
+{% set _ = item.definition.pop('port') %}
 {% endif -%}
 
-{% if item.definition.prefregex is defined %}
-prefregex    = {{ item.definition.prefregex | join('\n               ') }}
-{% endif -%}
+{% for k, v in item.definition.items() %}
+{% if v | type == 'list' %}
+{{ "%-15s" | format(k,) }} = {{ v | join('\n                  ') }}
+{% else %}
+{{ "%-15s" | format(k,) }} = {{ v }}
+{% endif %}
 
-{% if item.definition.custom is defined %}
-{% for line in item.definition.custom.split('\n') %}
-{{ line }}
 {% endfor %}
-{% endif -%}
+{% endif %}
 
-{% if item.definition.failregex is defined %}
-failregex    = {{ item.definition.failregex | join('\n               ') }}
-{% endif -%}
-
-{% if item.definition.ignoreregex is defined %}
-ignoreregex  = {{ item.definition.ignoreregex }}
-{% endif -%}
-
-{% if item.definition.mode is defined %}
-mode         = {{ item.definition.mode }}
-{% endif -%}
-
-{% if item.definition.maxlines is defined %}
-maxlines     = {{ item.definition.maxlines }}
-{% endif -%}
-
-{% if item.definition.datepattern is defined %}
-datepattern  = {{ item.definition.datepattern | join('\n               ') }}
-{% endif -%}
 
 {% if item.init is defined %}
 [Init]
-{% if item.init.journalmatch is defined %}
-journalmatch = {{ item.init.journalmatch }}
-{% endif %}
+{% for k, v in item.init.items() %}
+{{ "%-15s" | format(k,) }} = {{ v }}
+{% endfor %}
+
 {% endif %}

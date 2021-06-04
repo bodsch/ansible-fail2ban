@@ -48,6 +48,8 @@ fail2ban_path_definitions:
 
 fail2ban_jails: []
 
+fail2ban_actions: []
+
 fail2ban_filters: []
 
 ...

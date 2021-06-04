@@ -26,7 +26,7 @@ fail2ban_before_conf: "{{
   default(_fail2ban_before_conf[ansible_os_family | lower] |
   default(_fail2ban_before_conf['default'])) }}"
 
-fail2ban_conf_default:
+fail2ban_defaults_conf:
   default:
     # 'CRITICAL','ERROR','WARNING','NOTICE','INFO','DEBUG'
     loglevel: INFO
@@ -48,7 +48,7 @@ fail2ban_conf_default:
   thread:
     stacksize: 0
 
-fail2ban_jail_default:
+fail2ban_defaults_jail:
   includes:
     before: "{{ fail2ban_before_conf }}"
     after: ''
@@ -102,7 +102,7 @@ fail2ban_jail_default:
     # Default banning action (e.g. iptables, iptables-new, iptables-multiport, shorewall, etc)
     banaction: iptables-multiport
 
-fail2ban_jails_defaults:
+fail2ban_defaults_jails:
   - name: ssh
     enabled: false
     port: ssh
@@ -119,6 +119,8 @@ fail2ban_jails_defaults:
     filter: sshd-ddos
     logpath: '%(auth_log)s'
 
-fail2ban_actions_defaults: []
+fail2ban_defaults_actions: []
 
-fail2ban_filters_defaults: []
+fail2ban_defaults_filters: []
+
+...

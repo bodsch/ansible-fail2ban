@@ -1,4 +1,5 @@
 
+# Ansible Role:  `fail2ban`
 
 An Ansible Role that installs and configure fail2ban 2.x on Debian/Ubuntu, RHEL/CentOS, ArchLinux and ArtixLinux (mabybe also on Gentoo based Systemes).
 
@@ -11,6 +12,18 @@ An Ansible Role that installs and configure fail2ban 2.x on Debian/Ubuntu, RHEL/
 [issues]: https://github.com/bodsch/ansible-fail2ban/issues?q=is%3Aopen+is%3Aissue
 [releases]: https://github.com/bodsch/ansible-fail2ban/releases
 
+## Requirements & Dependencies
+
+not known
+
+### Operating systems
+
+Tested on
+
+* Debian 9 / 10
+* Ubuntu 18.04 / 20.04
+* CentOS 8
+* OracleLinux 8
 
 ## Role Variables
 
@@ -37,7 +50,7 @@ None.
 
 ## Example Playbook
 
-```
+```yaml
 fail2ban_ignoreips:
   - 127.0.0.1/8
   - 192.168.0.0/24

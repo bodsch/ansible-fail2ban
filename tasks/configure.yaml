@@ -10,10 +10,6 @@
     backup: true
   notify:
     - restart fail2ban
-  tags:
-    - configuration
-    - fail2ban
-    - fail2ban-configuration
 
 - name: create path configs
   template:
@@ -27,7 +23,7 @@
   loop_control:
     label: "{{ item.key }}"
   when:
-    fail2ban_path_definitions is defined
+    - fail2ban_path_definitions is defined
 
 - name: update configuration file - /etc/fail2ban/jail.conf
   template:
@@ -39,10 +35,6 @@
     backup: true
   notify:
     - restart fail2ban
-  tags:
-    - configuration
-    - fail2ban
-    - fail2ban-configuration
 
 - name: update configuration file - /etc/fail2ban/jail.local
   template:
@@ -53,10 +45,6 @@
     mode: 0644
   notify:
     - restart fail2ban
-  tags:
-    - configuration
-    - fail2ban
-    - fail2ban-configuration
 
 - name: create filter configs
   template:
@@ -70,7 +58,7 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    fail2ban_filters is defined
+    - fail2ban_filters is defined
 
 - name: create action configs
   template:
@@ -84,54 +72,6 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    fail2ban_actions is defined
-
-# - name: copy filters from '{{ fail2ban_filterd_path }}' to remote system
-#   copy:
-#     src: "{{ fail2ban_filterd_path }}"
-#     dest: /etc/fail2ban/filter.d/
-#     owner: root
-#     group: root
-#     mode: 0644
-#   when:
-#     - fail2ban_filterd_path is defined
-#   notify:
-#     - restart fail2ban
-#   tags:
-#     - configuration
-#     - fail2ban
-#     - fail2ban-filters
-#
-# - name: copy actions from '{{ fail2ban_actiond_path }}' to remote system
-#   copy:
-#     src: "{{ fail2ban_actiond_path }}"
-#     dest: /etc/fail2ban/action.d/
-#     owner: root
-#     group: root
-#     mode: 0644
-#   when:
-#     - fail2ban_actiond_path is defined
-#   notify:
-#     - restart fail2ban
-#   tags:
-#     - configuration
-#     - fail2ban
-#     - fail2ban-actions
-#
-# - name: copy jails from '{{ fail2ban_jaild_path }}' to remote system
-#   copy:
-#     src: "{{ fail2ban_jaild_path }}"
-#     dest: /etc/fail2ban/jail.d/
-#     owner: root
-#     group: root
-#     mode: 0644
-#   when:
-#     - fail2ban_jaild_path is defined
-#   notify:
-#     - restart fail2ban
-#   tags:
-#     - configuration
-#     - fail2ban
-#     - fail2ban-jails
+    - fail2ban_actions is defined
 
 ...

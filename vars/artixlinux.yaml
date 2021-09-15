@@ -1,30 +1,9 @@
 ---
 
-_fail2ban_packages:
-  default:
-    - fail2ban
-  artixlinux:
-    - fail2ban-openrc
+fail2ban_packages:
+  - fail2ban-openrc
 
-_fail2ban_before_conf:
-  default: paths-debian.conf
-  redhat: paths-fedora.conf
-  suse: paths-opensuse.conf
-  archlinux: paths-arch.conf
-  artixlinux: paths-artix.conf
-
-fail2ban_packages: "{{
-          _fail2ban_packages[ansible_os_family | lower~ '-' ~ ansible_distribution_major_version] |
-  default(_fail2ban_packages[ansible_os_family | lower] |
-  default(_fail2ban_packages[ansible_os_family | lower | replace(' ', '') ] |
-  default(_fail2ban_packages[ansible_distribution | lower~ '-' ~ ansible_distribution_major_version] |
-  default(_fail2ban_packages[ansible_distribution | lower] |
-  default(_fail2ban_packages['default']))))) }}"
-
-fail2ban_before_conf: "{{
-          _fail2ban_before_conf[ansible_os_family | lower | replace(' ', '') ] |
-  default(_fail2ban_before_conf[ansible_os_family | lower] |
-  default(_fail2ban_before_conf['default'])) }}"
+fail2ban_before_conf: paths-artix.conf
 
 fail2ban_defaults_conf:
   default:

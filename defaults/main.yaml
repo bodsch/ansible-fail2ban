@@ -21,7 +21,7 @@ fail2ban_path_definitions:
       syslog_mail_warn: '%(syslog_mail)s'
       syslog_user: /var/log/user.log
       syslog_daemon: /var/log/daemon.log
-      auth_log: /var/log/authlog.log
+      auth_log: /var/log/auth.log
   # ARCH
   archlinux:
     includes:

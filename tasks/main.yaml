@@ -1,0 +1,20 @@
+---
+
+- include_tasks: prepare.yaml
+  tags:
+    - fail2ban_prepare
+    - fail2ban_configure
+
+- include_tasks: install.yaml
+  tags:
+    - fail2ban_install
+
+- include_tasks: configure.yaml
+  tags:
+    - fail2ban_configure
+
+- include_tasks: service.yaml
+  tags:
+    - fail2ban_service
+
+...

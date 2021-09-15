@@ -1,7 +1,8 @@
 
 # Ansible Role:  `fail2ban`
 
-An Ansible Role that installs and configure fail2ban 2.x on Debian/Ubuntu, RHEL/CentOS, ArchLinux and ArtixLinux (mabybe also on Gentoo based Systemes).
+An Ansible Role that installs and configure fail2ban 2.x on Debian/Ubuntu, RHEL/CentOS, 
+ArchLinux and ArtixLinux (mabybe also on other `openrc` based Systemes).
 
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bodsch/ansible-fail2ban/CI)][ci]
@@ -12,9 +13,10 @@ An Ansible Role that installs and configure fail2ban 2.x on Debian/Ubuntu, RHEL/
 [issues]: https://github.com/bodsch/ansible-fail2ban/issues?q=is%3Aopen+is%3Aissue
 [releases]: https://github.com/bodsch/ansible-fail2ban/releases
 
+
 ## Requirements & Dependencies
 
-not known
+None
 
 ### Operating systems
 
@@ -22,12 +24,13 @@ Tested on
 
 * Debian 9 / 10
 * Ubuntu 18.04 / 20.04
-* CentOS 8
-* OracleLinux 8
+* CentOS 7 / 8
+* Oracle Linux 7 / 8
+* Arch Linux
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
+Available variables are listed below, along with default values (see `defaults/main.yaml`):
 
 `fail2ban_ignoreips`
 
@@ -44,11 +47,11 @@ can be an IP address, a CIDR mask or a DNS host.
 `fail2ban_jail`
 
 
-## Dependencies
-
-None.
-
 ## Example Playbook
+
+see into [molecule test](molecule/default/converge.yml) and [configuration](molecule/default/group_vars/all/vars.yml)
+
+
 
 ```yaml
 fail2ban_ignoreips:
@@ -112,4 +115,4 @@ fail2ban_jails:
 
 ## License
 
-Apache License 2.0
+[Apache License 2.0](LICENSE)

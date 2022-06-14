@@ -11,8 +11,12 @@
         - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version }}.yaml"
         # eg. archlinux-systemd / archlinux-openrc
         - "{{ ansible_distribution | lower }}-{{ ansible_service_mgr | lower }}.yaml"
+        # eg. artixlinux-systemd / artixlinux-openrc
+        - "{{ ansible_distribution | lower | replace(' ', '') }}-{{ ansible_service_mgr | lower }}.yaml"
         # eg. debian / ubuntu / centos / oraclelinux
         - "{{ ansible_distribution | lower }}.yaml"
+        # eg. artixlinux
+        - "{{ ansible_distribution | lower | replace(' ', '')  }}.yaml"
         # eg. redhat / debian / archlinux
         - "{{ ansible_os_family | lower }}.yaml"
         - default.yaml

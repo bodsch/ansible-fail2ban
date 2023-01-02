@@ -1,13 +1,15 @@
-# meta file for fail2ban
 ---
+
 galaxy_info:
   role_name: fail2ban
   namespace: bodsch
 
   author: Bodo Schulz
   description: install and configure fail2ban on various systems
+
   license: Apache 2.0
-  min_ansible_version: 2.9
+  min_ansible_version: "2.10"
+
   platforms:
     - name: ArchLinux
     - name: Ubuntu
@@ -22,7 +24,7 @@ galaxy_info:
         - bullseye
     - name: EL
       versions:
-        - 8
+        - "8"
 
   galaxy_tags:
     - system

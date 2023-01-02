@@ -4,9 +4,6 @@ __metaclass__ = type
 
 from ansible.utils.display import Display
 
-# https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html
-# https://blog.oddbit.com/post/2019-04-25-writing-ansible-filter-plugins/
-
 display = Display()
 
 
@@ -39,7 +36,6 @@ class FilterModule(object):
 
     def merge_jails(self, defaults, data):
         """
-
         """
         count_defaults = len(defaults)
         count_data = len(data)
@@ -51,10 +47,10 @@ class FilterModule(object):
         result = []
 
         # short way
-        if(count_defaults == 0):
+        if count_defaults == 0:
             return self.__sort_list(data, 'name')
 
-        if(count_data == 0):
+        if count_data == 0:
             return self.__sort_list(defaults, 'name')
 
         # our new list from users input
@@ -63,7 +59,7 @@ class FilterModule(object):
             # search the name in the default map
             _defaults_name = self.__search(defaults, _name)
             # when not found, put these on the new result list
-            if(not _defaults_name):
+            if not _defaults_name:
                 result.append(_defaults_name)
             else:
                 # when found, remove these entry from the defaults list, its obsolete

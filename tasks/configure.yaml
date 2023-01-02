@@ -1,7 +1,7 @@
 ---
 
 - name: update configuration file - /etc/fail2ban/fail2ban.conf
-  template:
+  ansible.builtin.template:
     src: etc/fail2ban/fail2ban.conf.j2
     dest: /etc/fail2ban/fail2ban.conf
     owner: root
@@ -12,7 +12,7 @@
     - restart fail2ban
 
 - name: create path configs
-  template:
+  ansible.builtin.template:
     src: etc/fail2ban/paths.conf.j2
     dest: /etc/fail2ban/paths-{{ item.key }}.conf
     owner: root
@@ -26,7 +26,7 @@
     - fail2ban_path_definitions is defined
 
 - name: update configuration file - /etc/fail2ban/jail.conf
-  template:
+  ansible.builtin.template:
     src: etc/fail2ban/jail.conf.j2
     dest: /etc/fail2ban/jail.conf
     owner: root
@@ -37,7 +37,7 @@
     - restart fail2ban
 
 - name: update configuration file - /etc/fail2ban/jail.local
-  template:
+  ansible.builtin.template:
     src: etc/fail2ban/jail.local.j2
     dest: /etc/fail2ban/jail.local
     owner: root
@@ -47,7 +47,7 @@
     - restart fail2ban
 
 - name: create filter configs
-  template:
+  ansible.builtin.template:
     src: etc/fail2ban/filters.conf.j2
     dest: /etc/fail2ban/filter.d/{{ item.name }}.conf
     owner: root
@@ -61,7 +61,7 @@
     - fail2ban_filters is defined
 
 - name: create action configs
-  template:
+  ansible.builtin.template:
     src: etc/fail2ban/actions.conf.j2
     dest: /etc/fail2ban/action.d/{{ item.name }}.conf
     owner: root

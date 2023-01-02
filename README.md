@@ -4,14 +4,15 @@
 An Ansible Role that installs and configure fail2ban 2.x on Debian/Ubuntu, RHEL/CentOS, 
 ArchLinux and ArtixLinux (mabybe also on other `openrc` based Systemes).
 
-
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bodsch/ansible-fail2ban/CI)][ci]
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bodsch/ansible-fail2ban/main.yml?branch=main)][ci]
 [![GitHub issues](https://img.shields.io/github/issues/bodsch/ansible-fail2ban)][issues]
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/bodsch/ansible-fail2ban)][releases]
+[![Ansible Quality Score](https://img.shields.io/ansible/quality/50067?label=role%20quality)][quality]
 
 [ci]: https://github.com/bodsch/ansible-fail2ban/actions
 [issues]: https://github.com/bodsch/ansible-fail2ban/issues?q=is%3Aopen+is%3Aissue
 [releases]: https://github.com/bodsch/ansible-fail2ban/releases
+[quality]: https://galaxy.ansible.com/bodsch/fail2ban
 
 
 ## Requirements & Dependencies
@@ -116,6 +117,24 @@ fail2ban_jails:
     maxretry: 2
 ```
 
+
+## Contribution
+
+Please read [Contribution](CONTRIBUTING.md)
+
+## Development,  Branches (Git Tags)
+
+The `master` Branch is my *Working Horse* includes the "latest, hot shit" and can be complete broken!
+
+If you want to use something stable, please use a [Tagged Version](https://gitlab.com/bodsch/ansible-fail2ban/-/tags)!
+
+
+## Author
+
+- Bodo Schulz
+
 ## License
 
-[Apache License 2.0](LICENSE)
+[Apache](LICENSE)
+
+`FREE SOFTWARE, HELL YEAH!`

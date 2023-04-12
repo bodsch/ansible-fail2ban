@@ -1,13 +1,11 @@
 ---
 
-- name: prepare container
+- name: information
   hosts: all
   gather_facts: true
 
   pre_tasks:
     - name: arch- / artixlinux
-      when:
-        - ansible_distribution | lower in ['archlinux', 'artix linux']
       block:
         - name: update pacman system
           command: |
@@ -22,6 +20,10 @@
               true
           when:
             - ansible_os_family | lower == 'artix linux'
+
+      when:
+        - ansible_distribution | lower == 'archlinux' or
+          ansible_os_family | lower == 'artix linux'
 
     - debug:
         msg:

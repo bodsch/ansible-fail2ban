@@ -25,12 +25,11 @@ Tested on
 
 * ArchLinux
 * Debian based
-    - Debian 10 / 11
-    - Ubuntu 20.04
-* RedHat based
-    - Alma Linux 8
-    - Rocky Linux 8
-    - OracleLinux 8
+    - Debian 10 / 11 / 12
+    - Ubuntu 20.04 / 22.04
+
+> **RedHat-based systems are no longer officially supported! May work, but does not have to.**
+
 
 ## Role Variables
 
@@ -137,4 +136,4 @@ If you want to use something stable, please use a [Tagged Version](https://githu
 
 [Apache](LICENSE)
 
-`FREE SOFTWARE, HELL YEAH!`
+**FREE SOFTWARE, HELL YEAH!**
